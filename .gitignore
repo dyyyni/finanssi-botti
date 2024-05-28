@@ -1,1 +1,11 @@
-/target
+# Ignore everything by default
+*
+
+# Whitelist the needed files
+!/.gitignore
+!Cargo.lock
+!Cargo.toml
+
+# Whitelist directories and their contents
+!src/
+!src/**
