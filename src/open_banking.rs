@@ -1,14 +1,22 @@
 use log::error;
 use reqwest::Error;
 use std::collections::HashMap;
+use std::env;
+
+fn get_client_id() -> String {
+    env::var("CLIENT_ID").unwrap()
+}
 
 pub async fn get_token() -> Result<String, Error> {
     let url = "https://s-pankki-api-sandbox.crosskey.io/open-banking/v2.0/oidc/token";
+    let client_id = get_client_id();
+
+    println!("{client_id}");
 
     let mut params = HashMap::new();
     params.insert("grant_type", "client_credentials");
     params.insert("scope", "scope1");
-    params.insert("client_id", "TODO_get_from_env");
+    params.insert("client_id", &client_id);
 
     let client = reqwest::Client::new();
 
